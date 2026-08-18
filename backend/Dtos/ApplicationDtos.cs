@@ -26,7 +26,6 @@ public class ApplicationCreateDto
 {
     public int ScholarshipId { get; set; }
     public int StudentId { get; set; }
-    public string? Remarks { get; set; }
 }
 
 public class ApplicationStatusUpdateDto

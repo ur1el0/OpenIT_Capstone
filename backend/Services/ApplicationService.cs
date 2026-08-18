@@ -77,8 +77,7 @@ public class ApplicationService
             StudentId = dto.StudentId,
             ScholarshipId = dto.ScholarshipId,
             Status = ApplicationStatus.Submitted,
-            SubmittedAt = DateTime.UtcNow,
-            Remarks = dto.Remarks
+            SubmittedAt = DateTime.UtcNow
         };
 
         _context.Applications.Add(application);
