@@ -28,6 +28,8 @@ builder.Services.AddScoped<DocumentService>();
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<EligibilityService>();
 
+builder.Services.AddHealthChecks();
+
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("Jwt"));
 
 var jwtSection = builder.Configuration.GetSection("Jwt");
@@ -93,11 +95,6 @@ using (var scope = app.Services.CreateScope())
     {
         // The table already exists but migration history is missing/out-of-sync.
         app.Logger.LogWarning("Skipping migration due to existing relation: {Message}", ex.MessageText);
-
-        // Ensure newer columns exist for legacy databases whose migration history was lost.
-        await context.Database.ExecuteSqlRawAsync(
-            "ALTER TABLE \"Scholarships\" ADD COLUMN IF NOT EXISTS \"Requirements\" text NOT NULL DEFAULT '';"
-        );
     }
     await SeedData.EnsureSeededAsync(context);
 }
@@ -111,5 +108,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHealthChecks("/health");
 
 app.Run();
