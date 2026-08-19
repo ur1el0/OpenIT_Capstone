@@ -38,6 +38,18 @@ const LoginPage = () => {
     }
   };
 
+  const handleDemoLogin = async () => {
+    setError("");
+    setIsLoading(true);
+    try {
+      await loginAsStudent({ userName: "juan.dela.cruz", password: "Student123!" });
+    } catch (err) {
+      setError(err?.message || "Unable to sign in.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="auth-page">
       <div className="auth-card">
@@ -121,6 +133,15 @@ const LoginPage = () => {
             ) : (
               "Sign In"
             )}
+          </button>
+          <button
+            type="button"
+            className="btn btn-secondary btn-full auth-submit-btn"
+            style={{ marginTop: "12px" }}
+            onClick={handleDemoLogin}
+            disabled={isLoading}
+          >
+            Try Demo (Student)
           </button>
         </form>
 
