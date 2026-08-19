@@ -33,8 +33,6 @@ Thumbs.db
 # Private defense prep notes
 .private/
 
-
-Kaagapay.Api.Tests
-
 # Further Context + Instuctions
 .agents/AGENTS.md
+.agents/MEMORY.md
