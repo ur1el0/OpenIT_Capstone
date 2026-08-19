@@ -301,16 +301,19 @@ const ApplyModal = ({ scholarship, onConfirm, onClose }) => {
     <div
       className="modal-overlay"
       onClick={!isSubmitting ? onClose : undefined}
+      role="dialog"             // <-- NEW: Marks this as a dialog box
+      aria-modal="true"         // <-- NEW: Prevents interacting with background
+      aria-labelledby="modal-title" // <-- NEW: Points to the title ID
     >
       <div className="modal-card" onClick={(e) => e.stopPropagation()}>
         {/* Header (persistent) */}
         <div className="modal-header">
           <div className="modal-title-block">
-            <h2 className="modal-title">{scholarship.title}</h2>
+            {/* NEW: Added id="modal-title" so the dialog can read it */}
+            <h2 className="modal-title" id="modal-title">{scholarship.title}</h2>
             <span className="modal-provider-tag">{scholarship.provider}</span>
           </div>
           <div className="modal-header-actions">
-            {/* Step indicator */}
             <div className="modal-steps">
               <span className={`modal-step-dot ${step >= 1 ? "active" : ""}`} />
               <span className="modal-step-line" />
@@ -320,6 +323,7 @@ const ApplyModal = ({ scholarship, onConfirm, onClose }) => {
               className="modal-close-btn"
               onClick={onClose}
               disabled={isSubmitting}
+              aria-label="Close modal" // <-- NEW: Explains what the X does
             >
               <X size={22} />
             </button>
