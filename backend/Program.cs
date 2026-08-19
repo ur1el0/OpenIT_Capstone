@@ -74,9 +74,10 @@ builder.Services.AddCors(options =>
                 "http://localhost:5175",
                 "http://127.0.0.1:5175",
                 "http://127.0.0.1:3000",
-                "paldos.vercel.app")
+                "https://paldos.vercel.app")
             .AllowAnyHeader()
-            .AllowAnyMethod();
+            .AllowAnyMethod()
+            .AllowCredentials();  
     });
 });
 
