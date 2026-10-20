@@ -12,9 +12,14 @@ dist-ssr/
 .env.*
 !.env.example
 
-# .NET Core
-backend/bin/
-backend/obj/
+# .NET Core & Build Artifacts
+**/bin/
+**/obj/
+artifacts/
+backend/artifacts/
+*.dll
+*.pdb
+*.exe
 *.user
 *.userprefs
 *.suo
@@ -34,5 +39,4 @@ Thumbs.db
 .private/
 
 # Further Context + Instuctions
-.agents/AGENTS.md
-.agents/MEMORY.md
+.agents/
